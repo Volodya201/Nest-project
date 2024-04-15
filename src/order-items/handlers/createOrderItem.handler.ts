@@ -1,14 +1,14 @@
 import { ICommandHandler, CommandHandler } from "@nestjs/cqrs"
 import { InjectModel } from "@nestjs/sequelize"
-import { Category } from "../entities/category.entity"
-import { CreateCategoryCommand } from "../commands/createCategory.command"
+import { OrderItem } from "../entities/order-item.entity"
+import { CreateOrderItemCommand } from "../commands/createOrderItem.command"
 
 
-@CommandHandler(CreateCategoryCommand)
-export class CreateCategoryHandler implements ICommandHandler<CreateCategoryCommand> {
-    constructor( @InjectModel(Category) private readonly categoryModel:typeof Category ) {}
+@CommandHandler(CreateOrderItemCommand)
+export class CreateOrderItemHandler implements ICommandHandler<CreateOrderItemCommand> {
+    constructor( @InjectModel(OrderItem) private readonly orderItemModel:typeof OrderItem ) {}
 
-    async execute(command: CreateCategoryCommand) {
-        return this.categoryModel.create({...command.category})
+    async execute(command: CreateOrderItemCommand) {
+        return this.orderItemModel.create({...command.orderItem})
     }
 }

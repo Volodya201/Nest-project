@@ -8,10 +8,14 @@ import { GetUserHandler } from './handlers/getUser.handler'
 import { CreateUserHandler } from './handlers/createUser.handler'
 import { UpdateUserHandler } from './handlers/updateUser.handler'
 import { RemoveUserHandler } from './handlers/removeUser.handler'
+import { GetUserByEmailHandler } from './handlers/getUserByEmail.handler'
+import { GetUserByActivationKeyHandler } from './handlers/getUserByActivationKey.handler'
 
 const handlers = [
   GetUsersHandler,
   GetUserHandler,
+  GetUserByEmailHandler,
+  GetUserByActivationKeyHandler,
   CreateUserHandler,
   UpdateUserHandler,
   RemoveUserHandler

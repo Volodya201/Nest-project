@@ -30,6 +30,5 @@ export class User extends Model {
     @BeforeCreate
     static setActivationValues(instance:User) {
         instance.isActivated = false
-        instance.activationKey = "dsfygdsjhgfjhdsgfjhdsgfjhsdgjfhgsdkjfhgsdkjfhhdgskfjhgsdkjfhgsdkfjhgsdkjfhgsdkjhfgsdkjfg"
     }
 }

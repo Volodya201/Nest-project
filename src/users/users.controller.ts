@@ -7,6 +7,8 @@ import { GetUsersQuery } from './queries/getUsers.query'
 import { GetUserQuery } from './queries/getUser.query'
 import { UpdateUserCommand } from './commands/updateUser.command'
 import { RemoveUserCommand } from './commands/removeUser.command'
+import { GetUserByEmailQuery } from './queries/getUserByEmail.query'
+import { GetUserByActivationKeyQuery } from './queries/getUserByActivationKey.query'
 
 @Controller('users')
 export class UsersController {
@@ -17,12 +19,23 @@ export class UsersController {
 
   @Post()
   create(@Body() user: CreateUserDto) {
+    console.log("User: ", user)
     return this.CommandBus.execute(new CreateUserCommand(user))
   }
 
   @Get()
   findAll() {
     return this.QueryBus.execute(new GetUsersQuery())
+  }
+
+  @Get('by-email/:email')
+  findOneByEmail(@Param('email') email: string) {
+    return this.QueryBus.execute(new GetUserByEmailQuery(email))
+  }
+
+  @Get('by-activation-key/:key')
+  findOneByActivationKey(@Param('key') key: string) {
+    return this.QueryBus.execute(new GetUserByActivationKeyQuery(key))
   }
 
   @Get(':id')

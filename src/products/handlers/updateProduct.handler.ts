@@ -9,7 +9,7 @@ export class UpdateProductHandler implements ICommandHandler<UpdateProductComman
     constructor( @InjectModel(Product) private readonly productRepo:typeof Product ) {}
 
     async execute(command: UpdateProductCommand) {
-        await this.productRepo.update({...command.product}, {where: {id: command.productId}})    
+        await this.productRepo.update({...command.product}, {where: {id: command.productId}, individualHooks: true})    
 
         return await this.productRepo.findOne({where: {id: command.productId}})
     }
