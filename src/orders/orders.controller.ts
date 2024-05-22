@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common'
 import { CreateOrderDto } from './dto/create-order.dto'
 import { UpdateOrderDto } from './dto/update-order.dto'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
@@ -17,7 +17,12 @@ export class OrderController {
 
   @Post()
   create(@Body() order: CreateOrderDto) {
-    return this.CommandBus.execute(new CreateOrderCommand(order))
+    try {
+      return this.CommandBus.execute(new CreateOrderCommand(order))
+    } catch (error) {
+      throw new HttpException("Неверный id пользователя", HttpStatus.INTERNAL_SERVER_ERROR)
+    }
+    
   }
 
   @Get()

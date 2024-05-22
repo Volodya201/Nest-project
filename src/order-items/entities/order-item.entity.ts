@@ -29,4 +29,12 @@ export class OrderItem extends Model {
 
     @BelongsTo(() => Order)
     order: Order
+
+
+    indexes: [
+        {
+           unique: true,
+           fields: ['product_id', 'order_id', 'count'],
+        }
+    ]
 }

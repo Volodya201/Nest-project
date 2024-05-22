@@ -16,8 +16,8 @@ export class OrderItemsController {
   ) {}
 
   @Post()
-  create(@Body() orderItem: CreateOrderItemDto) {
-    return this.CommandBus.execute(new CreateOrderItemCommand(orderItem))
+  create(@Body() orderItems: any) {
+    return this.CommandBus.execute(new CreateOrderItemCommand(orderItems))
   }
 
   @Get()

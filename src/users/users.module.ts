@@ -25,5 +25,6 @@ const handlers = [
   imports: [SequelizeModule.forFeature([User]), CqrsModule],
   controllers: [UsersController],
   providers: [...handlers],
+  exports: [UsersModule]
 })
 export class UsersModule {}

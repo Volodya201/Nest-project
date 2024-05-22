@@ -8,7 +8,6 @@ export class GetUserByActivationKeyHandler implements IQueryHandler {
     constructor (@InjectModel(User) private readonly userRepo:typeof User) {}
 
     async execute(query: GetUserByActivationKeyQuery): Promise<any> {
-        const foundUser =  this.userRepo.findOne({where: {activationKey: query.userActivationKey}, include: {all: true}}) || {}
-        return foundUser
+        return await this.userRepo.findOne({where: {activationKey: query.userActivationKey}, include: {all: true}}) || {}
     }
 }

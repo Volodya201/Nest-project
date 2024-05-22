@@ -9,6 +9,6 @@ export class GetOrderItemsHandler implements IQueryHandler<GetOrderItemsQuery> {
     constructor( @InjectModel(OrderItem) private readonly orderItemModel:typeof OrderItem ) {}
 
     async execute(query: GetOrderItemsQuery) {
-        return this.orderItemModel.findAll({include: {all: true}})
+        return this.orderItemModel.findAll({include: {all: true,}})
     }
 }

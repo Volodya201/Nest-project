@@ -10,11 +10,9 @@ export class CreateProductDto {
     url_image: string
 
     @IsNotEmpty()
-    @IsInt()
-    price_orinal: number
+    price_original: number
 
     @IsNotEmpty()
-    @IsInt()
     discount: number
 
     price_with_discount?: number

@@ -10,11 +10,13 @@ import { GetProductsHandler } from './handlers/getProducts.handler'
 import { GetProductHandler } from './handlers/getProduct.handler'
 import { UpdateProductHandler } from './handlers/updateProduct.handler'
 import { RemoveProductHandler } from './handlers/removeProduct.handler'
+import { GetProductsByIlikeHandler } from './handlers/getProductsByIlike.handler'
 
 
 const handlers = [
   GetProductsHandler,
   GetProductHandler,
+  GetProductsByIlikeHandler,
   CreateProductHandler,
   UpdateProductHandler,
   RemoveProductHandler

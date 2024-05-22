@@ -4,6 +4,7 @@ import { UpdateProductDto } from './dto/update-product.dto'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { GetProductsQuery } from './queries/getProducts.query'
 import { GetProductQuery } from './queries/getProduct.query'
+import { GetProductsByIlikeQuery } from "./queries/getProductsByIlike.query"
 import { CreateProductCommand } from './commands/createProduct.command'
 import { UpdateProductCommand } from './commands/updateProduct.command'
 import { RemoveProductCommand } from './commands/removeProduct.command'
@@ -17,12 +18,18 @@ export class ProductsController {
 
   @Post()
   create(@Body() CreateProductDto: CreateProductDto) {
+    console.log(CreateProductDto)
     return this.commandBus.execute(new CreateProductCommand(CreateProductDto))
   }
 
   @Get()
   findAll() {
     return this.queryBus.execute(new GetProductsQuery())
+  }
+
+  @Get('ilike/:searchingText')
+  findOneByIlike(@Param('searchingText') searchingText: string) {
+    return this.queryBus.execute(new GetProductsByIlikeQuery(searchingText))
   }
 
   @Get(':id')

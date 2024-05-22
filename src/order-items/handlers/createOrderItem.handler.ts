@@ -9,6 +9,6 @@ export class CreateOrderItemHandler implements ICommandHandler<CreateOrderItemCo
     constructor( @InjectModel(OrderItem) private readonly orderItemModel:typeof OrderItem ) {}
 
     async execute(command: CreateOrderItemCommand) {
-        return this.orderItemModel.create({...command.orderItem})
+        return this.orderItemModel.bulkCreate(command.orderItems)
     }
 }
