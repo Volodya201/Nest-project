@@ -27,19 +27,21 @@ export class ActivateUserHandler implements ICommandHandler<ActivateUserCommand>
 
             const foundUser = await this.queryBus.execute(new GetUserByActivationKeyQuery(key))
 
-            if (!foundUser.id) throw new HttpException("Ошибка активации", 404)
+            if (!foundUser.id) throw new Error("Ошибка активации")
 
-            // ошибка \/
             await foundUser.update({isActivated: true, activationKey: ""})
 
             await foundUser.save()
 
-
-                      
-
-            return "OK"
+            return {
+                status: 200,
+                message: "Успешно"
+            }
         } catch (error) {
-            
+            return {
+                status: 400,
+                message: "Ошибка активации"
+            }
         }
         
     }

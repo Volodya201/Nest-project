@@ -11,7 +11,7 @@ export class GetCategoryHandler implements IQueryHandler<GetCategoryQuery> {
 
     async execute(query: GetCategoryQuery) {
         try {
-            return this.categoryModel.findOne({where: {id: query.categoryId}})
+            return this.categoryModel.findOne({where: {id: query.categoryId}, include: {all: true}})
         } catch (error) {
             throw new HttpException("Ошибка сервера, повторите попытку позже", 500)
         }

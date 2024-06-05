@@ -19,7 +19,6 @@ export class UsersController {
 
   @Post()
   create(@Body() user: CreateUserDto) {
-    console.log("User: ", user)
     return this.CommandBus.execute(new CreateUserCommand(user))
   }
 

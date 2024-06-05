@@ -5,14 +5,12 @@ import { HttpException, HttpStatus } from "@nestjs/common"
 import { RegisterCommand } from "../commands/register.command"
 import { CommandBus, QueryBus } from "@nestjs/cqrs"
 import { CreateUserCommand } from "src/users/commands/createUser.command"
-import { GenerateTokensCommand } from "src/tokens/commands/generateTokens.command"
 
 
 @CommandHandler(RegisterCommand)
 export class RegisterHandler implements ICommandHandler<RegisterCommand> {
     constructor( 
         @InjectModel(User) private readonly userModel:typeof User,
-        private readonly queryBus: QueryBus,
         private readonly commandBus: CommandBus,
         //private TokenService: TokenService
     ) {}
@@ -29,7 +27,7 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
             username: createdUser.username
         }
 
-        return await this.commandBus.execute(new GenerateTokensCommand(userDTO))
+        return userDTO
         
     }
 }

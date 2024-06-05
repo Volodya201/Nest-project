@@ -1,5 +1,6 @@
 import { Table, Model, Column, DataType, HasMany, ForeignKey, BelongsTo, BeforeCreate } from "sequelize-typescript"
 import { Order } from "src/orders/entities/order.entity"
+import { UserRoles } from "./userRoles.entity"
 
 
 @Table({tableName: "users"})
@@ -17,6 +18,12 @@ export class User extends Model {
     @Column({type:DataType.STRING})
     password: string
 
+    @Column({type:DataType.STRING})
+    newPassword: string
+
+    @Column({type: DataType.TEXT, unique: true})
+    confirmKey: string
+    
     @Column({type: DataType.TEXT, unique: true})
     activationKey: string
 
@@ -25,6 +32,9 @@ export class User extends Model {
 
     @HasMany(() => Order)
     orders: Order[]
+
+    @HasMany(() => UserRoles)
+    roles: UserRoles[]
 
 
     @BeforeCreate
