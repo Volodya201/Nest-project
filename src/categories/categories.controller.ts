@@ -40,7 +40,7 @@ export class CategoryController {
 
 
     @Post()
-    @Roles(["CategiryEdit"])
+    @Roles(["CategoryEdit"])
     async create(@Body() category:CreateCategoryDto) {
         try {
             return this.commandBus.execute(new CreateCategoryCommand(category))
@@ -51,7 +51,7 @@ export class CategoryController {
 
 
     @Patch("/:id")
-    @Roles(["CategiryEdit"])
+    @Roles(["CategoryEdit"])
     async update(@Body() category:UpdateCategoryDto, @Param("id") id:string) {
         try {
 
@@ -63,7 +63,7 @@ export class CategoryController {
 
 
     @Delete("/:id")
-    @Roles(["CategiryEdit"])
+    @Roles(["CategoryEdit"])
     async remove(@Param("id") id:string) {
         try {
             return await this.commandBus.execute(new RemoveCategoryCommand(+id))

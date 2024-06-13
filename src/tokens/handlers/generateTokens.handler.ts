@@ -9,7 +9,7 @@ export class GenerateTokensHandler implements ICommandHandler<GenerateTokensComm
     async execute(command: GenerateTokensCommand) {
         const { userDTO } = command
 
-        const accessToken = JWT.sign(userDTO, "accessToken", {expiresIn: "30s"})
+        const accessToken = JWT.sign(userDTO, "accessToken", {expiresIn: "3m"})
         const refreshToken = JWT.sign(userDTO, "refreshToken", {expiresIn: "1h"})
 
         return {

@@ -9,6 +9,7 @@ import { OrdersModule } from './orders/orders.module'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import { ApplicationsModule } from './applications/applications.module'
+import { RequestsModule } from './requests/requests.module';
 
 @Module({
   imports: [SequelizeModule.forRoot({
@@ -21,7 +22,7 @@ import { ApplicationsModule } from './applications/applications.module'
     models: [],
     autoLoadModels: true,
     synchronize: true
-  }), ProductsModule, CategoryModule, OrderItemsModule, OrdersModule, UsersModule, AuthModule, ApplicationsModule],
+  }), ProductsModule, CategoryModule, OrderItemsModule, OrdersModule, UsersModule, AuthModule, ApplicationsModule, RequestsModule],
   controllers: [AppController],
   providers: [AppService],
 })
